@@ -1,3 +1,9 @@
+play (1.2.4-2) unstable; urgency=low
+
+  * Added scala support plugin
+
+ -- Vladimir Lazarenko <vllazarenko@ebay.com>  Wed, 06 Mar 2013 00:28:56 +0100
+
 play (1.2.4-1) unstable; urgency=low
 
   * 1.2.4 release 

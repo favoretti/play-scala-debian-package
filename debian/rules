@@ -20,6 +20,7 @@ SBIN_PATH=/usr/sbin
 override_dh_auto_build: 
 	if [ ! -f play-${VERSION}.zip ]; then curl -o play-${VERSION}.zip http://download.playframework.org/releases/play-${VERSION}.zip;fi
 	unzip play-${VERSION}.zip -d play
+	yes | ./play/play-${VERSION}/play install scala
 
 
 override_dh_auto_clean: 
@@ -30,7 +31,7 @@ override_dh_auto_clean:
 override_dh_auto_install: 
 	install -d $(DEB_PATH)$(INSTALL_PATH) $(DEB_PATH)$(SBIN_PATH) $(DEB_PATH)$(INSTALL_PATH)/modules $(DEB_PATH)$(ETC_PATH) $(DEB_PATH)$(DOC_PATH)
 	rsync -r --exclude play/play-${VERSION}/framework/classes play/play-${VERSION}/framework play/play-${VERSION}/play play/play-${VERSION}/resources play/play-${VERSION}/support play/play-${VERSION}/samples-and-tests $(DEB_PATH)$(INSTALL_PATH)
-	for m in crud docviewer grizzly secure testrunner; \
+	for m in crud docviewer grizzly secure testrunner scala-0.9; \
 	 do rsync -r --exclude play/play-${VERSION}/tmp play/play-${VERSION}/modules/$$m $(DEB_PATH)$(INSTALL_PATH)/modules ;\
 	done
 	cp -r play/play-${VERSION}/documentation $(DEB_PATH)$(DOC_PATH)
